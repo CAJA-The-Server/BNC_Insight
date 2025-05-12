@@ -1,0 +1,18 @@
+FROM node:22.15-alpine
+COPY ./server /app/tmp/server
+COPY ./client /app/tmp/client
+RUN npm i -g npm@latest
+WORKDIR /app/tmp/server
+RUN npm i
+RUN npm run build
+WORKDIR /app/tmp/client
+RUN npm i
+RUN npm run build
+WORKDIR /app
+RUN mv ./tmp/server/dist ./server
+RUN mv ./tmp/server/node_modules ./node_modules
+RUN mv ./tmp/server/package.json ./package.json
+RUN mv ./tmp/server/package-lock.json ./package-lock.json
+RUN mv ./tmp/client/build ./client
+RUN rm -rf ./tmp
+CMD ["node", "./server/index.js"]

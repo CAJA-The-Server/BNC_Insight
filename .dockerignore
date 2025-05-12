@@ -1,0 +1,11 @@
+/server/node_modules
+/server/dist
+/server/logs
+/server/sql
+/server/uploads
+/server/.env.*
+/server/README.md
+/server/drizzle.config.ts
+/client/node_modules
+/client/dist
+/client/README.md
